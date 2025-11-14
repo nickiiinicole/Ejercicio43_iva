@@ -1,71 +1,69 @@
-'''
-    cada produto na cesta da compra leve consigo as 
-    instrucións (funcións) de como debe ser calculado.
-    
-    shopping_list : 
-        precio
-        desconto
-        ive_fin
-    
-'''
-def calcular_iva_21(cantidade):
-    return cantidade * 1.21
-
-def calcular_iva_4(cantidade):
-    return cantidade * 1.04
-
-def aplicar_descuento_10(cantidade):
-    return cantidade * 0.90
-    
-def non_aplicar_descuento(cantidade):
-    return cantidade
-
+# --- 1. FUNCIONES DE CÁLCULO ---
 lista_compra = [
     {
-        "nome": "Laptop",
-        "prezo_base": 1200.00,
-        "desconto_fn": aplicar_descuento_10, 
-        "ive_fn": calcular_iva_21
+        "nombre": "Laptop",
+        "precio": 1200.00,
+        "desc_fn": desc_10,  # Referencia a la función de descuento
+        "iva_fn": iva_21
     },
     {
-        "nome": "Libro",
-        "prezo_base": 20.00,
-        "desconto_fn": non_aplicar_descuento, 
-        "ive_fn": calcular_iva_4
+        "nombre": "Libro",
+        "precio": 20.00,
+        "desc_fn": no_desc, 
+        "iva_fn": iva_4
     },
     {
-        "nome": "Monitor",
-        "prezo_base": 350.00,
-        "desconto_fn": aplicar_descuento_10,
-        "ive_fn": calcular_iva_21
+        "nombre": "Monitor",
+        "precio": 350.00,
+        "desc_fn": desc_10,
+        "iva_fn": iva_21
     }
 ]
 
-def calcular_cesta(cesta):
-    total_a_pagar = 0
-    total_ive_cobrado = 0 
-    total_desconto_aplicado = 0
+def iva_21(cant):
     
-    for produto in cesta:
-        prezo_inicial = produto['prezo_base']
+    return cant * 1.21
+
+def iva_4(cant):
+    
+    return cant * 1.04
+
+def desc_10(cant):
+   
+    return cant * 0.90
+    
+def no_desc(cant):
+    return cant
+
+
+
+def calcular_cesta(cesta):
+    total_pagar = 0
+    total_iva = 0 
+    total_desc = 0
+    
+    for prod in cesta:
+        precio_inicial = prod['precio']
         
-        desconto_fn = produto['desconto_fn']
-        prezo_cn_desconto = desconto_fn(prezo_inicial)
+       
+        desc_fn = prod['desc_fn']
+        precio_desc = desc_fn(precio_inicial)
         
-        cn_desconto = prezo_inicial - prezo_cn_desconto
+        desc_aplicado = precio_inicial - precio_desc
         
-        ive_fn = produto['ive_fn']
-        prezo_final = ive_fn(prezo_cn_desconto)
+      
+        iva_fn = prod['iva_fn']
+        precio_final = iva_fn(precio_desc)
         
-        ive_cobrado = prezo_final - prezo_cn_desconto
+        iva_cobrado = precio_final - precio_desc
         
-        total_a_pagar += prezo_final
-        total_ive_cobrado += ive_cobrado
-        total_desconto_aplicado += cn_desconto
+       
+        total_pagar += precio_final
+        total_iva += iva_cobrado
+        total_desc += desc_aplicado
         
     return {
-        "total_a_pagar": round(total_a_pagar, 2),
-        "total_ive": round(total_ive_cobrado, 2),
-        "total_desconto": round(total_desconto_aplicado, 2)
+        "total_a_pagar": round(total_pagar, 2),
+        "total_iva": round(total_iva, 2),
+        "total_descuento": round(total_desc, 2)
     }
-
