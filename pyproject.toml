@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+# !!!!!!!!!!Esto resuelve el problema de la ruta de importación de tu código fuente
+pythonpath = "src"
+
+# Especifica dónde buscar los tests si no quieres usar la convención
+testpaths = ["src", "tests"]
