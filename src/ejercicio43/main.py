@@ -1,9 +1,23 @@
-# --- 1. FUNCIONES DE CÁLCULO ---
+def iva_21(cant):
+    
+    return cant * 1.21
+
+def iva_4(cant):
+    
+    return cant * 1.04
+
+def desc_10(cant):
+   
+    return cant * 0.90
+    
+def no_desc(cant):
+    return cant
+
 lista_compra = [
     {
         "nombre": "Laptop",
         "precio": 1200.00,
-        "desc_fn": desc_10,  # Referencia a la función de descuento
+        "desc_fn": desc_10,  
         "iva_fn": iva_21
     },
     {
@@ -20,20 +34,6 @@ lista_compra = [
     }
 ]
 
-def iva_21(cant):
-    
-    return cant * 1.21
-
-def iva_4(cant):
-    
-    return cant * 1.04
-
-def desc_10(cant):
-   
-    return cant * 0.90
-    
-def no_desc(cant):
-    return cant
 
 
 

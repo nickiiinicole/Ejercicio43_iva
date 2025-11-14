@@ -1,5 +1,5 @@
 import pytest
-from src.ejercicio43.main import *
+from ejercicio43.main import *
 
 def test_funcion_iva_21():
     assert round(iva_21(100.00), 2) == 121.00
