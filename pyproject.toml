@@ -1,6 +1,22 @@
-[tool.pytest.ini_options]
-# !!!!!!!!!!Esto resuelve el problema de la ruta de importación de tu código fuente
-pythonpath = "src"
+[project]
+name = "Ejercicio43_iva"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=9.0.1",
+]
 
-# Especifica dónde buscar los tests si no quieres usar la convención
-testpaths = ["src", "tests"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.workspace]
+members = ["Ejercicio43_iva/src"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ejercicio43"]
